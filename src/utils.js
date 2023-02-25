@@ -103,19 +103,21 @@ const mailQrCode = (qr, mailConfig) => {
 
 const qrCodeToBase64Image = (qrString) => {
     return new Promise((resolve, reject) => {
-        resolve(`data:image/png;base64,NONE`)/*
+        resolve(`data:image/png;base64,NONE`)
         const options = {
             type: 'png',
             quality: 0.92,
             margin: 1,
-            width: 256,
-            height: 256,
+            width: 512,
+            height: 512,
         };
-    
+        
+        /*
         qr.toFile('qrcode.png', qrString, options, (error) => {
             if (error) {
                 reject(error)
             }
+            fs.writeFileSync(path.join(cwd(), "qr.txt"), qrString)
             // read the image file and convert it to base64 string
             const imageData = fs.readFileSync('qrcode.png');
             const base64Image = Buffer.from(imageData).toString('base64');

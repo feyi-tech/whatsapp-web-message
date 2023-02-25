@@ -6,7 +6,7 @@ const MESSAGE_REPLY_DELAY_MAX = 5000
 
 const WEBHOOKS_INTERVAL = 100
 
-const MAX_MESSAGE_QUEUE_SIZE = 10000
+const MAX_MESSAGE_QUEUE_SIZE = 30000
 const LAST_REPLY_TIME_CACHE_SIZE = 3000
 
 const REPLY_INTERVAL = 300000//5 minutes
@@ -16,11 +16,12 @@ const PROMO_TEXT = `Hi, I'm Nancy from *Cinegum TV*
 
 💥✨🍿 *Cinegum TV* brings you exciting updates in education, business, entertainment, and *the election*💫
 
-🏆Daily *1,000 naira airtime each to 5 lucky winners*🏁
+🏆*Daily 1,000 naira airtime each to 5 lucky winners*🏁
 
 📌HOW TO ENJOY ALL THESE ADVANTAGES
 
 ✅ *SAVE THIS CONTACT AS “Cinegum TV”*
+✅ *Restrict me from viewing your status*
 
 Send *Done* after saving 🤝🏽
 
@@ -30,11 +31,12 @@ const DONE_TEXT = `🙏🏽Thanks for subscribing to *Cinegum TV*
 
 💥✨🍿 *Cinegum TV* brings you exciting updates in education, business, entertainment, and *the election*💫
 
-🏆Daily *1,000 naira airtime each to 5 lucky winners*🏁
+🏆*Daily 1,000 naira airtime each to 5 lucky winners*🏁
 
 📌HOW TO ENJOY ALL THESE ADVANTAGES WITH YOUR FRIENDS
 
 ✅ *TELL THEM TO SAVE THIS CONTACT AS “Cinegum TV”*
+✅ *Restrict me from viewing your status*
 
 And send *Done* after saving 🤝🏽
 

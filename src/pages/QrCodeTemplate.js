@@ -168,7 +168,7 @@ module.exports = (title, website, websiteName, qrCode) => {
                                                             <tr>
                                                                 <td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
                                                                     <div align="center" class="alignment" style="line-height:10px;">
-                                                                        <img src="https://api.qrserver.com/v1/create-qr-code/?data=${qrCode}&size=256x256" 
+                                                                        <img src="https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrCode)}&size=256x256" 
                                                                         style="display: block; height: 256px; border: 0; width: 256px;margin-left: auto; margin-right: auto;" 
                                                                         width="256" height="256" 
                                                                         />

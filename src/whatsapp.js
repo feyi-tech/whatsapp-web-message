@@ -15,6 +15,7 @@ const adminAuth = require("./middlewares/admin-auth");
 const launchBot = (port, options) => {
     let client
     var isLoggedIn = true
+    var paused = false
     let app
 
     let messageQueue
@@ -61,6 +62,7 @@ const launchBot = (port, options) => {
 
     if(options.clientId) {
         client = new Client({
+            puppeteer: { headless: true,args: ['--no-sandbox', '--disable-setuid-sandbox']},
             authStrategy: new LocalAuth({ 
                 clientId: options.clientId,
                 dataPath: options.dataPath || "sessions"
@@ -97,6 +99,7 @@ const launchBot = (port, options) => {
 
             app.get('/info', (req, res) => {
                 res.json({
+                    is_paused: paused,
                     message_queue_size: messageQueue.length,
                     webhook_queue_size: webhookQueue.length,
                     messages_delivered_size: messagesDelivered.length,
@@ -126,8 +129,14 @@ const launchBot = (port, options) => {
                 if(req.body.clear_delivered) {
                     messagesDelivered = []
                 }
-                if(req.body.message_queue) {
+                if(req.body.clear_message_queue) {
                     messageQueue = []
+                }
+                if(req.body.pause) {
+                    paused = true
+
+                } else if(req.body.play) {
+                    paused = false
                 }
                 res.json({
                     message: "ok"
@@ -292,11 +301,16 @@ const launchBot = (port, options) => {
     }
     const startSending = () => {
         setTimeout(() => {
-            if(isLoggedIn && messageQueue.length > 0 && (nextSendTime === null || (new Date()).getTime() >= nextSendTime.getTime())) {
+            if(!paused && isLoggedIn && messageQueue.length > 0 && (nextSendTime === null || (new Date()).getTime() >= nextSendTime.getTime())) {
                 nextSendTime = null
                 var number = Array.isArray(messageQueue[0].number)? messageQueue[0].number[0] : messageQueue[0].number
                 sendMessage(client, number, messageQueue[0].message)
                 .then(num => {
+                    // get the chat you want to archive
+                    //client.getChatById('1234567890@c.us')
+                    // archive the chat
+                    //await chat.archive();
+
                     if(messageQueue[0].messageId) {
                         saveNumberMessaged(num, messageId)
                     }

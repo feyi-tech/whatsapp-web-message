@@ -1,5 +1,5 @@
 {
-  "name": "whatsapp",
+  "name": "whatsapp-web-message",
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
@@ -7,8 +7,10 @@
     "build": "tsc",
     "build:watch": "tsc --watch",
     "start": "node src/index.js",
+    "pm-start": "pm2 start npm --name whatsapp-web-message -i max -- start",
     "lib": "node lib/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docker": "docker build -t whatsapp-web-message . && docker run -p 2023:2023 whatsapp-web-message"
   },
   "author": "",
   "license": "ISC",
